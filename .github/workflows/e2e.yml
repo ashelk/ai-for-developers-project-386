@@ -24,14 +24,23 @@ jobs:
           java-version: "21"
           cache: maven
 
-      - name: Set up Node 20
+      - name: Set up Node 22
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: npm
           cache-dependency-path: |
+            package-lock.json
             frontend/package-lock.json
             e2e/package-lock.json
+
+      # Compile the TypeSpec contract -> tsp-output/schema/openapi.yaml.
+      # The output is gitignored, so the frontend's `types:generate` step
+      # below needs the spec to be regenerated here first.
+      - name: Compile TypeSpec contract
+        run: |
+          npm ci
+          npm run build
 
       # Pre-build the backend jar so that `mvn spring-boot:run` started by
       # Playwright's webServer is fast: it just executes the already-resolved
