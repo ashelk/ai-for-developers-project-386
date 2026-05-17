@@ -1,0 +1,19 @@
+{
+  "name": "calendar",
+  "version": "0.1.0",
+  "description": "API contract for a call-booking service (Cal.com-inspired). Design-first project using TypeSpec.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsp compile .",
+    "watch": "tsp compile . --watch",
+    "format": "tsp format \"**/*.tsp\""
+  },
+  "devDependencies": {
+    "@typespec/compiler": "latest",
+    "@typespec/http": "latest",
+    "@typespec/rest": "latest",
+    "@typespec/openapi": "latest",
+    "@typespec/openapi3": "latest"
+  }
+}
