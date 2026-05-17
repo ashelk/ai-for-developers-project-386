@@ -1,0 +1,26 @@
+server:
+  # `PORT` is the convention used by Render, Heroku, Fly.io and Hexlet's
+  # CI when checking the container. Defaults to 8081 for local development
+  # so that `mvn spring-boot:run` keeps working without env vars.
+  port: ${PORT:8081}
+
+spring:
+  application:
+    name: call-calendar-backend
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      indent-output: false
+    default-property-inclusion: non_null
+
+calendar:
+  # Comma-separated list of origins allowed by CORS. Defaults match the UI5
+  # dev server and Prism (so the same backend can replace either side).
+  allowed-origins: "http://localhost:8080,http://localhost:4010"
+  # If true (default), startup seeds two demo event types so the frontend
+  # has something to render against a fresh in-memory store.
+  seed-demo-data: true
+
+logging:
+  level:
+    com.calendar: INFO
