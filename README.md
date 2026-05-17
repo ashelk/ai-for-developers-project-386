@@ -44,7 +44,7 @@ spans both — it is the only place where they have to match in practice.
 
 ## Deployed instance
 
-> **Public URL:** _add the Render URL here once the first deploy is live._
+> **Public URL:** <https://call-calendar.onrender.com>
 
 The service listens on the port given by the `PORT` env var; the
 deployed image serves the SPA at `/` and the API at `/admin/**` and
