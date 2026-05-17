@@ -1,0 +1,24 @@
+# Render Blueprint for Call Calendar.
+#
+# After this file is committed to the repository, point Render at the repo:
+#   New + → Blueprint → select this repo → Apply
+# Render reads this file, builds the Docker image, and exposes the service
+# on a public URL. PORT is injected by Render at runtime; the Dockerfile
+# (and Spring Boot via `server.port: ${PORT:8081}`) picks it up.
+#
+# Reference: https://render.com/docs/blueprint-spec
+#
+services:
+  - type: web
+    name: call-calendar
+    runtime: docker
+    plan: free
+    region: frankfurt
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /admin/event-types
+    autoDeploy: true
+    envVars:
+      - key: JAVA_OPTS
+        value: "-Xms64m -Xmx400m"

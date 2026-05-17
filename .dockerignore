@@ -1,0 +1,22 @@
+# Build/installation outputs that should be reproduced inside the image
+**/node_modules
+**/target
+**/dist
+**/tsp-output
+
+# Tooling that is not needed at deploy time
+**/test-results
+**/playwright-report
+**/.playwright
+**/.idea
+**/.vscode
+**/.DS_Store
+**/*.log
+
+# Not part of the deployed application
+e2e
+.git
+.github
+
+# Documentation is not needed in the image
+**/README.md
