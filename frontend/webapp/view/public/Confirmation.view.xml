@@ -1,0 +1,42 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  controllerName="ui.calendar.controller.public.Confirmation">
+  <Page
+    title="{i18n>publicConfirmationTitle}"
+    showNavButton="true"
+    navButtonPress=".onBackHome"
+    class="callcal-page-content">
+    <content>
+      <MessageStrip
+        text="{
+          parts: ['i18n>publicConfirmationMessage', 'lastBooking>/booking/guestEmail'],
+          formatter: '.formatConfirmationMessage'
+        }"
+        type="Success"
+        showIcon="true"
+        class="sapUiMediumMargin" />
+
+      <l:VerticalLayout class="sapUiMediumMargin" width="auto">
+        <ObjectStatus
+          title="{i18n>publicConfirmationEventTypeLabel}"
+          text="{lastBooking>/eventType/name}"
+          class="sapUiSmallMarginBottom" />
+        <ObjectStatus
+          title="{i18n>publicConfirmationWhenLabel}"
+          text="{
+            path: 'lastBooking>/booking/startTime',
+            formatter: '.formatBookingTime'
+          }"
+          state="Information"
+          class="sapUiSmallMarginBottom" />
+        <Button
+          text="{i18n>publicConfirmationBackHomeButton}"
+          type="Emphasized"
+          press=".onBackHome"
+          class="sapUiMediumMarginTop" />
+      </l:VerticalLayout>
+    </content>
+  </Page>
+</mvc:View>

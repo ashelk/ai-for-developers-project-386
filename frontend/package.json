@@ -1,0 +1,27 @@
+{
+  "name": "calendar-frontend",
+  "version": "0.1.0",
+  "description": "OpenUI5 + TypeScript frontend for the Call Calendar booking service. Talks to the backend exclusively via the OpenAPI contract.",
+  "private": true,
+  "scripts": {
+    "types:generate": "openapi-typescript ../tsp-output/schema/openapi.yaml -o webapp/types/api.ts",
+    "mock": "prism mock ../tsp-output/schema/openapi.yaml --port 4010 --cors --dynamic",
+    "ui5": "ui5 serve --open index.html",
+    "serve": "ui5 serve",
+    "dev": "concurrently -k -n MOCK,UI5 -c blue,green \"npm:mock\" \"npm:ui5\"",
+    "build": "ui5 build --clean-dest --include-all-dependencies",
+    "lint:ts": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@stoplight/prism-cli": "^5.10.0",
+    "@types/openui5": "^1.131.0",
+    "@ui5/cli": "^4.0.0",
+    "@ui5/ts-interface-generator": "^0.10.0",
+    "concurrently": "^9.0.0",
+    "openapi-typescript": "^7.4.0",
+    "typescript": "^5.5.0",
+    "ui5-middleware-livereload": "^3.0.0",
+    "ui5-tooling-modules": "^3.13.0",
+    "ui5-tooling-transpile": "^3.5.0"
+  }
+}

@@ -1,0 +1,39 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="ui.calendar.controller.public.EventTypes">
+  <Page
+    id="publicEventTypesPage"
+    title="{i18n>publicEventTypesTitle}"
+    showNavButton="false"
+    class="callcal-page-content">
+    <headerContent>
+      <Button
+        icon="sap-icon://settings"
+        tooltip="{i18n>navAdminEventTypes}"
+        press=".onGoToAdmin" />
+    </headerContent>
+    <content>
+      <List
+        id="eventTypesList"
+        items="{view>/eventTypes}"
+        busy="{view>/busy}"
+        noDataText="{i18n>publicEventTypesEmpty}">
+        <ObjectListItem
+          title="{view>name}"
+          intro="{view>description}"
+          type="Active"
+          press=".onSelectEventType">
+          <firstStatus>
+            <ObjectStatus
+              text="{
+                path: 'view>durationMinutes',
+                formatter: '.formatDuration'
+              }"
+              state="Information" />
+          </firstStatus>
+        </ObjectListItem>
+      </List>
+    </content>
+  </Page>
+</mvc:View>

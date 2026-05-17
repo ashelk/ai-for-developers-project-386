@@ -1,0 +1,5 @@
+node_modules/
+dist/
+webapp/types/api.ts
+*.log
+.DS_Store

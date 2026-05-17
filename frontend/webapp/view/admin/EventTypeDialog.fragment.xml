@@ -1,0 +1,58 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:core="sap.ui.core">
+  <Dialog
+    id="eventTypeDialog"
+    title="{view>/dialog/title}"
+    contentWidth="32rem"
+    busy="{view>/dialog/busy}">
+    <content>
+      <l:VerticalLayout class="sapUiSmallMargin" width="100%">
+        <Label
+          text="{i18n>adminEventTypesNameLabel}"
+          labelFor="dlgName"
+          required="true" />
+        <Input
+          id="dlgName"
+          value="{view>/dialog/form/name}"
+          valueState="{view>/dialog/errors/name/state}"
+          valueStateText="{view>/dialog/errors/name/text}"
+          maxLength="120" />
+
+        <Label
+          text="{i18n>adminEventTypesDescriptionLabel}"
+          labelFor="dlgDesc" />
+        <TextArea
+          id="dlgDesc"
+          value="{view>/dialog/form/description}"
+          maxLength="2000"
+          rows="4"
+          width="100%" />
+
+        <Label
+          text="{i18n>adminEventTypesDurationLabel}"
+          labelFor="dlgDur"
+          required="true" />
+        <StepInput
+          id="dlgDur"
+          value="{view>/dialog/form/durationMinutes}"
+          min="30"
+          max="480"
+          step="30"
+          textAlign="Center" />
+      </l:VerticalLayout>
+    </content>
+    <beginButton>
+      <Button
+        text="{i18n>adminEventTypesDialogCancelButton}"
+        press=".onDialogCancel" />
+    </beginButton>
+    <endButton>
+      <Button
+        text="{i18n>adminEventTypesDialogSaveButton}"
+        type="Emphasized"
+        press=".onDialogSave" />
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

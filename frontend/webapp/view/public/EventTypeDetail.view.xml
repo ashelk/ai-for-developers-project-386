@@ -1,0 +1,120 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:u="sap.ui.unified"
+  controllerName="ui.calendar.controller.public.EventTypeDetail">
+  <Page
+    id="publicEventTypeDetailPage"
+    title="{view>/eventType/name}"
+    showNavButton="true"
+    navButtonPress=".onNavBack"
+    busy="{view>/busy}"
+    busyIndicatorDelay="100"
+    class="callcal-page-content">
+    <content>
+      <VBox class="sapUiSmallMargin">
+        <Text text="{view>/eventType/description}" />
+        <ObjectStatus
+          text="{
+            path: 'view>/eventType/durationMinutes',
+            formatter: '.formatDuration'
+          }"
+          state="Information"
+          class="sapUiTinyMarginTop" />
+      </VBox>
+
+      <Panel
+        headerText="{i18n>publicEventTypeDetailPickDateLabel}"
+        expandable="false"
+        class="sapUiSmallMarginBeginEnd">
+        <content>
+          <u:Calendar
+            id="dateCalendar"
+            intervalSelection="false"
+            singleSelection="true"
+            select=".onDateSelected"
+            minDate="{view>/minDate}"
+            maxDate="{view>/maxDate}" />
+        </content>
+      </Panel>
+
+      <Panel
+        headerText="{i18n>publicEventTypeDetailPickSlotLabel}"
+        expandable="false"
+        class="sapUiSmallMarginBeginEnd"
+        visible="{= !!${view>/selectedDate} }">
+        <content>
+          <Text
+            text="{i18n>publicEventTypeDetailNoSlots}"
+            visible="{= ${view>/slotsForDay}.length === 0 }"
+            class="sapUiSmallMargin" />
+          <HBox
+            class="callcal-slot-grid"
+            wrap="Wrap"
+            items="{
+              path: 'view>/slotsForDay',
+              templateShareable: false
+            }">
+            <Button
+              text="{view>label}"
+              press=".onSelectSlot"
+              type="{= ${view>startTime} === ${view>/selectedSlotStart} ? 'Emphasized' : 'Default' }" />
+          </HBox>
+        </content>
+      </Panel>
+
+      <Panel
+        headerText="{i18n>publicEventTypeDetailFormTitle}"
+        expandable="false"
+        class="sapUiSmallMarginBeginEnd"
+        visible="{= !!${view>/selectedSlotStart} }">
+        <content>
+          <l:VerticalLayout class="sapUiSmallMargin" width="100%">
+            <Label
+              text="{i18n>publicEventTypeDetailFormNameLabel}"
+              required="true"
+              labelFor="guestNameInput"
+              class="callcal-form-row" />
+            <Input
+              id="guestNameInput"
+              value="{view>/form/guestName}"
+              valueState="{view>/formErrors/guestName/state}"
+              valueStateText="{view>/formErrors/guestName/text}"
+              maxLength="200" />
+
+            <Label
+              text="{i18n>publicEventTypeDetailFormEmailLabel}"
+              required="true"
+              labelFor="guestEmailInput"
+              class="callcal-form-row" />
+            <Input
+              id="guestEmailInput"
+              type="Email"
+              value="{view>/form/guestEmail}"
+              valueState="{view>/formErrors/guestEmail/state}"
+              valueStateText="{view>/formErrors/guestEmail/text}"
+              maxLength="254" />
+
+            <Label
+              text="{i18n>publicEventTypeDetailFormNotesLabel}"
+              labelFor="guestNotesInput"
+              class="callcal-form-row" />
+            <TextArea
+              id="guestNotesInput"
+              value="{view>/form/guestNotes}"
+              maxLength="2000"
+              rows="3"
+              width="100%" />
+
+            <Button
+              text="{i18n>publicEventTypeDetailFormSubmitButton}"
+              type="Emphasized"
+              press=".onSubmitBooking"
+              class="sapUiSmallMarginTop" />
+          </l:VerticalLayout>
+        </content>
+      </Panel>
+    </content>
+  </Page>
+</mvc:View>

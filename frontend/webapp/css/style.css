@@ -1,0 +1,26 @@
+.callcal-event-card {
+  margin: 0.5rem;
+  min-width: 18rem;
+  max-width: 22rem;
+}
+
+.callcal-event-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.callcal-slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.callcal-page-content {
+  padding: 1rem 2rem;
+}
+
+.callcal-form-row {
+  margin-bottom: 1rem;
+}

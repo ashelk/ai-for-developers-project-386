@@ -1,0 +1,127 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "ui.calendar",
+    "type": "application",
+    "i18n": {
+      "bundleUrl": "i18n/i18n.properties",
+      "supportedLocales": [""],
+      "fallbackLocale": ""
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "applicationVersion": {
+      "version": "0.1.0"
+    },
+    "dataSources": {
+      "calendarApi": {
+        "uri": "http://localhost:4010/",
+        "type": "JSON",
+        "settings": {
+          "localUri": ""
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "ui.calendar.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.unified": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "resources": {
+      "css": [{ "uri": "css/style.css" }]
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ui.calendar.i18n.i18n",
+          "supportedLocales": [""],
+          "fallbackLocale": ""
+        }
+      },
+      "view": {
+        "type": "sap.ui.model.json.JSONModel"
+      }
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "ui.calendar.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide"
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "publicEventTypes",
+          "target": "publicEventTypes"
+        },
+        {
+          "pattern": "event-types/{eventTypeId}",
+          "name": "publicEventTypeDetail",
+          "target": "publicEventTypeDetail"
+        },
+        {
+          "pattern": "event-types/{eventTypeId}/confirmation",
+          "name": "publicConfirmation",
+          "target": "publicConfirmation"
+        },
+        {
+          "pattern": "admin/event-types",
+          "name": "adminEventTypes",
+          "target": "adminEventTypes"
+        },
+        {
+          "pattern": "admin/bookings",
+          "name": "adminBookings",
+          "target": "adminBookings"
+        }
+      ],
+      "targets": {
+        "publicEventTypes": {
+          "viewName": "public.EventTypes",
+          "viewLevel": 1
+        },
+        "publicEventTypeDetail": {
+          "viewName": "public.EventTypeDetail",
+          "viewLevel": 2
+        },
+        "publicConfirmation": {
+          "viewName": "public.Confirmation",
+          "viewLevel": 3
+        },
+        "adminEventTypes": {
+          "viewName": "admin.EventTypes",
+          "viewLevel": 1
+        },
+        "adminBookings": {
+          "viewName": "admin.Bookings",
+          "viewLevel": 1
+        }
+      }
+    }
+  }
+}

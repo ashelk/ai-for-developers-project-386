@@ -1,0 +1,59 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="ui.calendar.controller.admin.Bookings">
+  <Page
+    title="{i18n>adminBookingsTitle}"
+    showNavButton="true"
+    navButtonPress=".onNavHome"
+    class="callcal-page-content">
+    <headerContent>
+      <Button
+        text="{i18n>navAdminEventTypes}"
+        press=".onNavToEventTypes" />
+    </headerContent>
+    <content>
+      <Table
+        items="{view>/bookings}"
+        busy="{view>/busy}"
+        noDataText="{i18n>adminBookingsEmpty}"
+        sticky="ColumnHeaders"
+        growing="true">
+        <columns>
+          <Column>
+            <Text text="{i18n>adminBookingsColumnWhen}" />
+          </Column>
+          <Column>
+            <Text text="{i18n>adminBookingsColumnEventType}" />
+          </Column>
+          <Column>
+            <Text text="{i18n>adminBookingsColumnGuestName}" />
+          </Column>
+          <Column>
+            <Text text="{i18n>adminBookingsColumnGuestEmail}" />
+          </Column>
+          <Column minScreenWidth="Tablet" demandPopin="true">
+            <Text text="{i18n>adminBookingsColumnNotes}" />
+          </Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text
+                text="{
+                  path: 'view>startTime',
+                  formatter: '.formatTime'
+                }" />
+              <Text text="{view>eventType/name}" />
+              <Text text="{view>guestName}" />
+              <Link
+                text="{view>guestEmail}"
+                href="mailto:{view>guestEmail}" />
+              <Text text="{view>guestNotes}" wrapping="true" />
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+    </content>
+  </Page>
+</mvc:View>

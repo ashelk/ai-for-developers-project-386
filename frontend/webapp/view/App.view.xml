@@ -1,0 +1,7 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="ui.calendar.controller.App"
+  displayBlock="true">
+  <App id="app" autoFocus="false" />
+</mvc:View>
